@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="760" height="420" viewBox="0 0 760 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="arcGreen" x1="290" y1="80" x2="470" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00C853"/>
+      <stop offset="100%" stop-color="#B2FF59"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <rect width="760" height="420" rx="24" fill="#161B22"/>
+
+  <!-- Tablet Frame -->
+  <rect x="110" y="28" width="540" height="364" rx="28" fill="#0F0F0F" stroke="#30363D" stroke-width="6"/>
+
+  <!-- Progress Ring -->
+  <circle cx="380" cy="158" r="76" stroke="#2B2B2B" stroke-width="10"/>
+  <path d="M380 82 A76 76 0 0 1 456 158" stroke="url(#arcGreen)" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Lightning Icon + Percentage -->
+  <path d="M385 110 L369 132 H381 L375 150 L393 127 H381 L385 110 Z" fill="#FFEB3B"/>
+  <text x="380" y="192" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="800">68%</text>
+
+  <!-- Frosted Message Card -->
+  <rect x="170" y="262" width="420" height="96" rx="16" fill="#FFFFFF" fill-opacity="0.08"/>
+  <text x="380" y="292" text-anchor="middle" fill="#B2FF59" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="2">⚡ SEDANG MENGISI DAYA</text>
+  <text x="380" y="319" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500">Perangkat sedang dicas.</text>
+  <text x="380" y="341" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500">Lepas casan untuk menggunakan perangkat.</text>
+</svg>

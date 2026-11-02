@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ChargeLock</string>
+    <string name="lock_message">Perangkat sedang dicas.\nLepas casan untuk menggunakan perangkat.</string>
+    <string name="start_service">Aktifkan Kunci Cas</string>
+    <string name="stop_service">Nonaktifkan Kunci Cas</string>
+    <string name="permission_request">Aplikasi membutuhkan izin "Muncul di atas aplikasi lain" untuk mengunci layar saat dicas.</string>
+</resources>
