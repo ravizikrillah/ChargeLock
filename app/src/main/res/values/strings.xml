@@ -1,7 +1,16 @@
 <resources>
-    <string name="app_name">ChargeLock</string>
-    <string name="lock_message">Perangkat sedang dicas.\nLepas casan untuk menggunakan perangkat.</string>
-    <string name="start_service">Aktifkan Kunci Cas</string>
-    <string name="stop_service">Nonaktifkan Kunci Cas</string>
-    <string name="permission_request">Aplikasi membutuhkan izin "Muncul di atas aplikasi lain" untuk mengunci layar saat dicas.</string>
+    <string name="app_name" translatable="false">ChargeLock</string>
+    <string name="lock_badge">⚡ CHARGING IN PROGRESS</string>
+    <string name="lock_message">Device is currently charging.\nUnplug the charger to use this device.</string>
+    <string name="setup_title">Initial Setup</string>
+    <string name="permission_request">ChargeLock needs "Display over other apps" permission to lock the screen while charging.</string>
+    <string name="grant_overlay_button">Grant Overlay Permission</string>
+    <string name="battery_opt_title">Battery Optimization</string>
+    <string name="battery_opt_message">To prevent the lock service from stopping in the background, please exclude this app from battery optimization.</string>
+    <string name="disable_battery_opt_button">Disable Battery Optimization</string>
+    <string name="status_active_title">ChargeLock Active</string>
+    <string name="status_active_message">Automatically locks the screen while charging and resumes after device restart.</string>
+    <string name="notif_channel_name">ChargeLock Service</string>
+    <string name="notif_title">ChargeLock Active</string>
+    <string name="notif_message">Monitoring charging status…</string>
 </resources>

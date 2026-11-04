@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ 充電中</string>
+    <string name="lock_message">現在充電中です。\n端末を使用するには充電器を外してください。</string>
+    <string name="setup_title">初期設定</string>
+    <string name="permission_request">充電中に画面をロックするには「他のアプリの上に重ねて表示」の権限が必要です。</string>
+    <string name="grant_overlay_button">オーバーレイ権限を許可</string>
+    <string name="battery_opt_title">バッテリー最適化</string>
+    <string name="battery_opt_message">バックグラウンドで停止しないよう、バッテリー最適化の対象外に設定してください。</string>
+    <string name="disable_battery_opt_button">バッテリー最適化を無効化</string>
+    <string name="status_active_title">ロックシステム有効</string>
+    <string name="status_active_message">充電中および再起動後に自動で有効になります。</string>
+    <string name="notif_channel_name">ChargeLock サービス</string>
+    <string name="notif_title">ChargeLock 有効</string>
+    <string name="notif_message">充電状態を監視しています…</string>
+</resources>

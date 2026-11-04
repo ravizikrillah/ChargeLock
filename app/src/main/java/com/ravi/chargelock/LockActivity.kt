@@ -318,7 +318,7 @@ fun LockScreenContent(batteryLevel: Int) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "⚡ SEDANG MENGISI DAYA",
+                        text = stringResource(id = R.string.lock_badge),
                         color = Color(0xFFB2FF59),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,

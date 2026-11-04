@@ -50,6 +50,9 @@ Whenever power is connected (`AC`, `USB`, or wireless), **ChargeLock** immediate
 - **Stealth Launcher Footprint**:
   - Registered under `CATEGORY_INFO` + `excludeFromRecents="true"` — **invisible on the Home Screen, App Drawer, and Recent Apps** so children cannot accidentally tamper with it.
 
+- **Automatic Multi-Language Localization**:
+  - Automatically follows the device's system language (`ACTION_LOCALE_CHANGED` + Android 13+ `localeConfig`) out-of-the-box: **English**, **Bahasa Indonesia**, **Bahasa Melayu**, **Japanese (日本語)**, **Korean (한국어)**, **Simplified Chinese (简体中文)**, **Arabic (العربية — RTL)**, and **Spanish (Español)**.
+
 - **Google Family Link Ready**:
   - Appears as a standalone installed package (`com.ravi.chargelock`) inside the parent's **Google Family Link** console.
   - Automatically resumes monitoring upon device boot (`BOOT_COMPLETED`, `LOCKED_BOOT_COMPLETED`) or after being unblocked in Family Link (`MY_PACKAGE_UNSUSPENDED`).

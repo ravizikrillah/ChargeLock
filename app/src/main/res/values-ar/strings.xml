@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ جاري الشحن</string>
+    <string name="lock_message">الجهاز قيد الشحن حالياً.\nافصل الشاحن لاستخدام الجهاز.</string>
+    <string name="setup_title">الإعداد الأولي</string>
+    <string name="permission_request">يحتاج التطبيق إلى إذن "الظهور فوق التطبيقات الأخرى" لقفل الشاشة أثناء الشحن.</string>
+    <string name="grant_overlay_button">منح إذن الظهور</string>
+    <string name="battery_opt_title">تحسين البطارية</string>
+    <string name="battery_opt_message">لمنع توقف القفل تلقائياً، يرجى استثناء التطبيق من تحسين البطارية.</string>
+    <string name="disable_battery_opt_button">إيقاف تحسين البطارية</string>
+    <string name="status_active_title">نظام القفل نشط</string>
+    <string name="status_active_message">سيعمل التطبيق تلقائياً عند شحن الجهاز وبعد إعادة التشغيل.</string>
+    <string name="notif_channel_name">خدمة ChargeLock</string>
+    <string name="notif_title">ChargeLock نشط</string>
+    <string name="notif_message">جاري مراقبة حالة الشحن…</string>
+</resources>

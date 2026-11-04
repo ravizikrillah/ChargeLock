@@ -78,7 +78,7 @@ fun ChargeLockControl(modifier: Modifier = Modifier) {
     ) {
         if (!Settings.canDrawOverlays(context)) {
             Text(
-                text = "Konfigurasi Awal",
+                text = stringResource(R.string.setup_title),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
@@ -100,18 +100,18 @@ fun ChargeLockControl(modifier: Modifier = Modifier) {
                 },
                 modifier = Modifier.fillMaxWidth().height(56.dp)
             ) {
-                Text("Berikan Izin Overlay")
+                Text(stringResource(R.string.grant_overlay_button))
             }
         } else if (!isIgnoringBatteryOptimizations) {
             Text(
-                text = "Optimasi Baterai",
+                text = stringResource(R.string.battery_opt_title),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFFF44336)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Agar pengunci tidak mati otomatis, aplikasi harus dikecualikan dari optimasi baterai.",
+                text = stringResource(R.string.battery_opt_message),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
@@ -125,7 +125,7 @@ fun ChargeLockControl(modifier: Modifier = Modifier) {
                 },
                 modifier = Modifier.fillMaxWidth().height(56.dp)
             ) {
-                Text("Matikan Optimasi Baterai")
+                Text(stringResource(R.string.disable_battery_opt_button))
             }
         } else {
             Text(
@@ -134,14 +134,14 @@ fun ChargeLockControl(modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Sistem Pengunci Aktif",
+                text = stringResource(R.string.status_active_title),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF4CAF50)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Aplikasi akan otomatis aktif saat perangkat dicas dan setelah perangkat di-restart.",
+                text = stringResource(R.string.status_active_message),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium
             )

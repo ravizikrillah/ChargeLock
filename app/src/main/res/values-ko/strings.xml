@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ 충전 중</string>
+    <string name="lock_message">기기가 충전 중입니다.\n기기를 사용하려면 충전기를 분리해 주세요.</string>
+    <string name="setup_title">초기 설정</string>
+    <string name="permission_request">충전 중 화면을 잠그려면 "다른 앱 위에 표시" 권한이 필요합니다.</string>
+    <string name="grant_overlay_button">오버레이 권한 허용</string>
+    <string name="battery_opt_title">배터리 최적화</string>
+    <string name="battery_opt_message">백그라운드에서 자동 종료되지 않도록 배터리 최적화에서 제외해 주세요.</string>
+    <string name="disable_battery_opt_button">배터리 최적화 해제</string>
+    <string name="status_active_title">잠금 시스템 활성화됨</string>
+    <string name="status_active_message">충전 중이거나 기기 재시작 후에도 자동으로 작동합니다.</string>
+    <string name="notif_channel_name">ChargeLock 서비스</string>
+    <string name="notif_title">ChargeLock 실행 중</string>
+    <string name="notif_message">충전 상태를 감지하는 중…</string>
+</resources>

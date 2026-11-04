@@ -37,6 +37,9 @@ class ChargeDetectionService : Service() {
                     stopLockActivity(context)
                     sendWakeToBatteryLock(context)
                 }
+                Intent.ACTION_LOCALE_CHANGED -> {
+                    startForegroundService()
+                }
                 Intent.ACTION_BATTERY_CHANGED -> {
                     val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
                     val plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
@@ -62,6 +65,7 @@ class ChargeDetectionService : Service() {
             addAction(Intent.ACTION_POWER_CONNECTED)
             addAction(Intent.ACTION_POWER_DISCONNECTED)
             addAction(Intent.ACTION_BATTERY_CHANGED)
+            addAction(Intent.ACTION_LOCALE_CHANGED)
             addAction("com.ravi.chargelock.OPEN_LOCK")
         }
         
@@ -105,7 +109,7 @@ class ChargeDetectionService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Charge Lock Service",
+                getString(R.string.notif_channel_name),
                 NotificationManager.IMPORTANCE_LOW
             )
             val manager = getSystemService(NotificationManager::class.java)
@@ -113,8 +117,8 @@ class ChargeDetectionService : Service() {
         }
 
         val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("ChargeLock Aktif")
-            .setContentText("Memantau status pengisian daya...")
+            .setContentTitle(getString(R.string.notif_title))
+            .setContentText(getString(R.string.notif_message))
             .setSmallIcon(R.mipmap.ic_launcher)
             .setOngoing(true)
             .build()

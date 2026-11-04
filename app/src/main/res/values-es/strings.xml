@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ CARGANDO DISPOSITIVO</string>
+    <string name="lock_message">El dispositivo se está cargando.\nDesconecta el cargador para usarlo.</string>
+    <string name="setup_title">Configuración Inicial</string>
+    <string name="permission_request">Se necesita el permiso "Mostrar sobre otras apps" para bloquear la pantalla al cargar.</string>
+    <string name="grant_overlay_button">Conceder Permiso</string>
+    <string name="battery_opt_title">Optimización de Batería</string>
+    <string name="battery_opt_message">Para evitar que el bloqueo se detenga en segundo plano, excluye la app de la optimización de batería.</string>
+    <string name="disable_battery_opt_button">Desactivar Optimización</string>
+    <string name="status_active_title">Bloqueo de Carga Activo</string>
+    <string name="status_active_message">Se activará automáticamente al cargar el dispositivo y tras reiniciar.</string>
+    <string name="notif_channel_name">Servicio ChargeLock</string>
+    <string name="notif_title">ChargeLock Activo</string>
+    <string name="notif_message">Supervisando estado de carga…</string>
+</resources>

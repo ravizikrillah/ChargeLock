@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ SEDANG MENGISI DAYA</string>
+    <string name="lock_message">Perangkat sedang dicas.\nLepas casan untuk menggunakan perangkat.</string>
+    <string name="setup_title">Konfigurasi Awal</string>
+    <string name="permission_request">Aplikasi membutuhkan izin "Muncul di atas aplikasi lain" untuk mengunci layar saat dicas.</string>
+    <string name="grant_overlay_button">Berikan Izin Overlay</string>
+    <string name="battery_opt_title">Optimasi Baterai</string>
+    <string name="battery_opt_message">Agar pengunci tidak mati otomatis, aplikasi harus dikecualikan dari optimasi baterai.</string>
+    <string name="disable_battery_opt_button">Matikan Optimasi Baterai</string>
+    <string name="status_active_title">Sistem Pengunci Aktif</string>
+    <string name="status_active_message">Aplikasi akan otomatis aktif saat perangkat dicas dan setelah perangkat di-restart.</string>
+    <string name="notif_channel_name">Layanan ChargeLock</string>
+    <string name="notif_title">ChargeLock Aktif</string>
+    <string name="notif_message">Memantau status pengisian daya…</string>
+</resources>

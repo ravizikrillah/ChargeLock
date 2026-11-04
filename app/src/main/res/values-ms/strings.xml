@@ -1,0 +1,15 @@
+<resources>
+    <string name="lock_badge">⚡ SEDANG MENGECAS</string>
+    <string name="lock_message">Peranti sedang dicas.\nTanggalkan pengecas untuk menggunakan peranti.</string>
+    <string name="setup_title">Tetapan Awal</string>
+    <string name="permission_request">Aplikasi memerlukan kebenaran "Papar di atas aplikasi lain" untuk mengunci skrin semasa mengecas.</string>
+    <string name="grant_overlay_button">Beri Kebenaran Tindanan</string>
+    <string name="battery_opt_title">Pengoptimuman Bateri</string>
+    <string name="battery_opt_message">Supaya pengunci tidak berhenti automatik, kecualikan aplikasi ini daripada pengoptimuman bateri.</string>
+    <string name="disable_battery_opt_button">Matikan Pengoptimuman Bateri</string>
+    <string name="status_active_title">Sistem Pengunci Aktif</string>
+    <string name="status_active_message">Aplikasi akan aktif secara automatik semasa peranti dicas dan selepas peranti dimulakan semula.</string>
+    <string name="notif_channel_name">Perkhidmatan ChargeLock</string>
+    <string name="notif_title">ChargeLock Aktif</string>
+    <string name="notif_message">Memantau status pengecasan…</string>
+</resources>
