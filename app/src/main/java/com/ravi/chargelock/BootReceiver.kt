@@ -8,12 +8,15 @@ import android.provider.Settings
 
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        if (context.packageManager.isPackageSuspended) return
+
         when (intent.action) {
             Intent.ACTION_BOOT_COMPLETED,
             Intent.ACTION_LOCKED_BOOT_COMPLETED,
             "android.intent.action.QUICKBOOT_POWERON",
             Intent.ACTION_MY_PACKAGE_REPLACED,
-            Intent.ACTION_MY_PACKAGE_UNSUSPENDED -> {
+            Intent.ACTION_MY_PACKAGE_UNSUSPENDED,
+            "com.ravi.chargelock.WAKE_CHECK" -> {
                 if (Settings.canDrawOverlays(context)) {
                     runCatching {
                         val serviceIntent = Intent(context, ChargeDetectionService::class.java)

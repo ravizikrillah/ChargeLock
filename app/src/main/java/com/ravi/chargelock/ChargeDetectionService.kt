@@ -72,15 +72,28 @@ class ChargeDetectionService : Service() {
         }
 
         startForegroundService()
-        
-        // Check current status on start
+        checkCurrentChargingState()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (packageManager.isPackageSuspended) {
+            stopSelf()
+            return START_NOT_STICKY
+        }
+        checkCurrentChargingState()
+        return START_STICKY
+    }
+
+    private fun checkCurrentChargingState() {
         val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
             registerReceiver(null, ifilter)
         }
         val status: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
+        val plugged: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0
         val isCharging: Boolean = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL
-        
+            status == BatteryManager.BATTERY_STATUS_FULL ||
+            plugged != 0
+
         wasCharging = isCharging
         if (isCharging) {
             startLockActivity(this)
@@ -100,9 +113,10 @@ class ChargeDetectionService : Service() {
         }
 
         val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Charge Lock Aktif")
+            .setContentTitle("ChargeLock Aktif")
             .setContentText("Memantau status pengisian daya...")
             .setSmallIcon(R.mipmap.ic_launcher)
+            .setOngoing(true)
             .build()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -123,16 +137,13 @@ class ChargeDetectionService : Service() {
     }
 
     private fun stopLockActivity(context: Context) {
-        // To stop the activity, we can send a broadcast or use an event bus.
-        // Or simply start it with a flag that tells it to finish, or just let it handle it.
-        // Actually, a simple way is to send a broadcast that LockActivity listens to.
-        val intent = Intent("com.ravi.chargelock.CLOSE_LOCK")
+        val intent = Intent("com.ravi.chargelock.CLOSE_LOCK").setPackage(packageName)
         context.sendBroadcast(intent)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(receiver)
+        runCatching { unregisterReceiver(receiver) }
     }
 
     override fun onBind(intent: Intent?): IBinder? = null

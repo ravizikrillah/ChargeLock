@@ -207,24 +207,27 @@ class LockActivity : ComponentActivity() {
         if (currentlyCharging && !isFinishing) {
             // Tarik kembali ke depan dengan sedikit delay agar sistem tidak memblokir
             window.decorView.postDelayed({
-                val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-                activityManager.moveTaskToFront(taskId, 0)
-                
-                // Jika moveTaskToFront gagal di beberapa HP, paksa dengan startActivity
-                val intent = Intent(this, LockActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                if (!isFinishing && !isDestroyed) {
+                    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                    activityManager.moveTaskToFront(taskId, 0)
+
+                    // Jika moveTaskToFront gagal di beberapa perangkat, paksa dengan startActivity
+                    val intent = Intent(this, LockActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                        addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    }
+                    startActivity(intent)
                 }
-                startActivity(intent)
             }, 100)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(closeReceiver)
-        unregisterReceiver(batteryReceiver)
+        runCatching { unregisterReceiver(closeReceiver) }
+        runCatching { unregisterReceiver(batteryReceiver) }
     }
 }
 
