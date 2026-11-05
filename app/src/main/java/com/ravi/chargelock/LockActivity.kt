@@ -9,6 +9,7 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -111,9 +112,6 @@ class LockActivity : ComponentActivity() {
             return
         }
         
-        // Keep screen on
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        
         // Make the activity show over lock screen
         setShowWhenLocked(true)
         setTurnScreenOn(true)
@@ -162,66 +160,45 @@ class LockActivity : ComponentActivity() {
     }
     */
 
+    private fun isScreenInteractive(): Boolean {
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        return powerManager.isInteractive
+    }
+
+    private fun bringBackToFront() {
+        if (!isScreenInteractive() || !isCharging || isFinishing) return
+        val intent = Intent(this, LockActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
+        startActivity(intent)
+        @Suppress("DEPRECATION")
+        overridePendingTransition(0, 0)
+    }
+
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
             hideSystemUI()
-        } else if (isCharging) {
-            // Hanya tarik kembali ke depan JIKA masih dalam status dicas
-            val intent = Intent(this, LockActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            startActivity(intent)
         }
     }
 
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
-        // Terpanggil saat tombol Home ditekan
-        if (isCharging) {
-            val intent = Intent(this, LockActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            startActivity(intent)
+        // Terpanggil HANYA saat user secara aktif menekan tombol Home atau Recents
+        // (Sistem Android tidak memanggil onUserLeaveHint saat layar dimatikan/sleep)
+        if (isCharging && isScreenInteractive()) {
+            bringBackToFront()
         }
     }
 
     @Suppress("DEPRECATION")
     override fun onPause() {
         super.onPause()
-        
-        // Cek ulang status charging langsung dari sistem
-        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
-            registerReceiver(null, ifilter)
-        }
-        val status: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
-        val plugged: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0
-        val currentlyCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL ||
-                plugged != 0
-
-        if (currentlyCharging && !isFinishing) {
-            // Tarik kembali ke depan dengan sedikit delay agar sistem tidak memblokir
-            window.decorView.postDelayed({
-                if (!isFinishing && !isDestroyed) {
-                    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-                    activityManager.moveTaskToFront(taskId, 0)
-
-                    // Jika moveTaskToFront gagal di beberapa perangkat, paksa dengan startActivity
-                    val intent = Intent(this, LockActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                        addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                    }
-                    startActivity(intent)
-                }
-            }, 100)
-        }
+        // Biarkan lifecycle pause berjalan normal tanpa memaksakan activity kembali ke depan,
+        // agar proses screen-off / sleep tidak dicegat.
     }
 
     override fun onDestroy() {

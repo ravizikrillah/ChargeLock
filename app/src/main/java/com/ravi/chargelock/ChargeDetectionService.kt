@@ -32,6 +32,11 @@ class ChargeDetectionService : Service() {
                     wasCharging = true
                     startLockActivity(context)
                 }
+                Intent.ACTION_SCREEN_ON -> {
+                    if (wasCharging) {
+                        startLockActivity(context)
+                    }
+                }
                 Intent.ACTION_POWER_DISCONNECTED -> {
                     wasCharging = false
                     stopLockActivity(context)
@@ -66,6 +71,7 @@ class ChargeDetectionService : Service() {
             addAction(Intent.ACTION_POWER_DISCONNECTED)
             addAction(Intent.ACTION_BATTERY_CHANGED)
             addAction(Intent.ACTION_LOCALE_CHANGED)
+            addAction(Intent.ACTION_SCREEN_ON)
             addAction("com.ravi.chargelock.OPEN_LOCK")
         }
         
